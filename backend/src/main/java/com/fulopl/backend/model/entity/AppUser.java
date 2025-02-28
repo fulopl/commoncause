@@ -20,10 +20,10 @@ public class AppUser {
     private Set<Role> roles;
 
     private String name;
-
     private String email;
-
     private String pw;
+    private String address;
+    private String phoneNumber;
 
     public Set<Role> getRoles() {
         return roles;
