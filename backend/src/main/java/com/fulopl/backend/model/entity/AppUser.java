@@ -19,9 +19,12 @@ public class AppUser {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    @ManyToMany
+    private Set<UserGroup> groups;
+
     private String name;
     private String email;
-    private String pw;
+    private String password;
     private String address;
     private String phoneNumber;
 
