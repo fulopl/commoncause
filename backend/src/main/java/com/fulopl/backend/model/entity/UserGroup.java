@@ -8,7 +8,7 @@ import jakarta.persistence.ManyToOne;
 import java.util.Set;
 
 @Entity
-public class Group {
+public class UserGroup {
     @Id
     private Long id;
 
