@@ -9,39 +9,42 @@ import Logout from "./pages/Logout.jsx";
 import Login from "./pages/Login.jsx";
 
 function App() {
-    const router = createBrowserRouter([
-        {
-            path: "/",
-            element: <Layout/>,
-            errorElement: <ErrorPage/>,
-            children: [
-                {
-                    path: "/main",
-                    element: <MainPage/>,
-                    errorElement: <ErrorPage/>,
-                },
-                {
-                    path: "/groups",
-                    element: <Groups/>,
-                    errorElement: <ErrorPage/>,  //TODO remove this line if redundant
-                },
-                {
-                    path: "/login",
-                    element: <Login/>,
-                    errorElement: <ErrorPage/>,
-                },
-                {
-                    path: "/logout",
-                    element: <Logout/>,
-                    errorElement: <ErrorPage/>,
-                },
-                {
-                    path: "/register",
-                    element: <Registration/>,
-                    errorElement: <ErrorPage/>,
-                },
-            ]
-        }])
+    const router = createBrowserRouter(
+        [
+            {
+                path: "/",
+                element: <Layout/>,
+                errorElement: <ErrorPage/>,
+                children: [
+                    {
+                        path: "/main",
+                        element: <MainPage/>,
+                        errorElement: <ErrorPage/>,
+                    },
+                    {
+                        path: "/groups",
+                        element: <Groups/>,
+                        errorElement: <ErrorPage/>,  //TODO remove this line if redundant
+                    },
+                    {
+                        path: "/login",
+                        element: <Login/>,
+                        errorElement: <ErrorPage/>,
+                    },
+                    {
+                        path: "/logout",
+                        element: <Logout/>,
+                        errorElement: <ErrorPage/>,
+                    },
+                    {
+                        path: "/register",
+                        element: <Registration/>,
+                        errorElement: <ErrorPage/>,
+                    },
+                ]
+            }
+        ]
+    )
 
     return <RouterProvider router={router}/>
 
