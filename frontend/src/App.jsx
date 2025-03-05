@@ -23,7 +23,7 @@ function App() {
                 {
                     path: "/groups",
                     element: <Groups/>,
-                    errorElement: <ErrorPage/>,
+                    errorElement: <ErrorPage/>,  //TODO remove this line if redundant
                 },
                 {
                     path: "/login",
