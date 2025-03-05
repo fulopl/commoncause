@@ -1,8 +1,26 @@
-import {Outlet} from "react-router-dom";
+import {Link, Outlet} from "react-router-dom";
 
 function Layout() {
     return <>
-        This is the Layout
+        <nav>
+            <ul>
+                <li>
+                    <Link to="/main">Main</Link>
+                </li>
+                <li>
+                    <Link to="/groups">Groups</Link>
+                </li>
+                <li>
+                    <Link to="/login">Login</Link>
+                </li>
+                <li>
+                    <Link to="/logout">Logout</Link>
+                </li>
+                <li>
+                    <Link to="/register">Register</Link>
+                </li>
+            </ul>
+        </nav>
         <Outlet/>
     </>
 }
