@@ -5,7 +5,7 @@ function Layout() {
         <nav>
             <ul>
                 <li>
-                    <Link to="/main">Main</Link>
+                    <Link to="/">Main</Link>
                 </li>
                 <li>
                     <Link to="/groups">Groups</Link>
