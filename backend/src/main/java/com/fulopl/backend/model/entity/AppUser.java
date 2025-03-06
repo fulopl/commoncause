@@ -28,6 +28,15 @@ public class AppUser {
     private String address;
     private String phoneNumber;
 
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     public Set<Role> getRoles() {
         return roles;
     }
