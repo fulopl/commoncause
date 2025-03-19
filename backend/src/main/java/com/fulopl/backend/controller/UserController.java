@@ -52,8 +52,9 @@ public class UserController {
         userRepository.save(appUser);
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public JwtResponse authenticateUser(@RequestBody UserCredentials userCredentials) {
+        System.out.println("Login initiated");
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(userCredentials.email(), userCredentials.password())
         );
