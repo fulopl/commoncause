@@ -2,26 +2,26 @@ import {useState} from "react";
 
 const UserForm = ({user, disabled, onSave}) => {
 
-    const [username, setUsername] = useState(user?.username ?? "");
+    const [email, setEmail] = useState(user?.email ?? "");
     const [password, setPassword] = useState(user?.password ?? "");
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        onSave({username: username, password: password});
+        onSave({email: email, password: password});
     }
 
     return <>
         <form autoComplete="off" onSubmit={handleSubmit}>
             <div>
-                <label htmlFor="username">Username:</label>
+                <label htmlFor="email">E-mail address:</label>
                 <input
-                    type="text"
+                    type="email"
                     autoComplete="off"
-                    placeholder="enter username here"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    name="username"
-                    id="username"
+                    placeholder="enter e-mail address here"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    name="email"
+                    id="email"
                 />
             </div>
             <div>
@@ -38,7 +38,7 @@ const UserForm = ({user, disabled, onSave}) => {
             </div>
             <div className="buttons">
                 <button type="submit" disabled={disabled}>
-                    {user.username ? "Update user data" : "Register"}
+                    {user.email ? "Update user data" : "Register"}
                 </button>
             </div>
         </form>
