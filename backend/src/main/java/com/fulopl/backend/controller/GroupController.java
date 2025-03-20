@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.*;
 public class GroupController {
 
     @PostMapping("/create")
-    public void createGroup(@RequestBody String name, Long ownerId) {
+    public void createGroup(@RequestBody String name) {
 
     }
 
-    @PutMapping("/{id}")
-    public void editGroup(@PathVariable Long id, @RequestBody String name, Long ownerId) {
+    @PutMapping("/{id}")  //TODO ...or use query params?
+    public void editGroup(@PathVariable Long id, @RequestBody String name) {
 
     }
 
