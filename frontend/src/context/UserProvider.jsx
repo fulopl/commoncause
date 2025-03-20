@@ -8,51 +8,49 @@ const getToken = () => window.localStorage.getItem("token");
 const UserProvider = ({children}) => {
     const [user, setUser] = useState();
     const [message, setMessage] = useState("");
-    const [loading, setLoading] = useState(true);
+    const [isLoading, setLoading] = useState(true);
 
-    const getMe = useCallback(() => {
-        fetch("/api/user/me", {
-            headers:
-                {
+
+    const getMe = useCallback(async () => {
+        try {
+            const res = await fetch("/api/user/me", {
+                headers: {
                     authorization: `Bearer ${getToken()}`
                 }
-        })
-            .then((res) => res.json())
-            .then((response) => {
-                if (response.error) setUser(null);
-                else setUser(response);
-            })
-            .finally(() => {
-                setLoading(false);
             });
+            const response = await res.json();
+            if (response.error) setUser(null);
+            else setUser(response);
+        } finally {
+            setLoading(false)
+        }
     }, []);
 
     useEffect(() => {
         getMe();
     }, []);
 
-    const login = (credentials) => {
+    const login = async (credentials) => {
         console.log(credentials)
-        fetch("/api/user/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(credentials),
-        })
-            .then((res) => res.json())
-            .then((res) => {
-                console.log(res)
-                if (res.jwt) {
-                    setToken(res.jwt);
-                    getMe();
-                    setMessage("OK");
-                } else if (res.error === "Bad credentials") setMessage("Incorrect username or password. Please try again!");
-                else setMessage(`An error occurred while processing your request.\n${res.error}\nPlease try again later!`);
-            })
-            .catch(() => {
-                setMessage("Server/network unavailable. Please try again later!");
-            })
+        try {
+            const res = await fetch("/api/user/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(credentials),
+            });
+            const response = await res.json();
+            console.log(response);
+            if (response.jwt) {
+                setToken(response.jwt);
+              //  await getMe();
+                setMessage("OK");
+            } else if (response.error === "Bad credentials") setMessage("Incorrect username or password. Please try again!");
+            else setMessage(`An error occurred while processing your request.\n${response.error}\nPlease try again later!`);
+        } catch (error) {
+            setMessage("Server/network unavailable. Please try again later!");
+        }
     };
 
     const logout = () => {
@@ -66,7 +64,7 @@ const UserProvider = ({children}) => {
 
     return (
         <UserContext.Provider value={{user, message, reSetMessage, login, logout}}>
-            {!loading && children}
+            {!isLoading && children}
         </UserContext.Provider>
     );
 };
