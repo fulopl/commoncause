@@ -30,4 +30,14 @@ public class GroupController {
     public void removeMember(@PathVariable Long id) {
 
     }
+
+    @GetMapping("/owner/{id}")
+    public void getByOwner(@PathVariable Long id) {
+
+    }
+
+    @GetMapping("/member/{id}")
+    public void getByMember(@PathVariable Long id) {
+
+    }
 }
