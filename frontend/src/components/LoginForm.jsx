@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-const UserForm = ({user, disabled, onSave}) => {
+const LoginForm = ({user, disabled, onSave}) => {
 
     const [email, setEmail] = useState(user?.username ?? "admin@example.com");
     const [password, setPassword] = useState(user?.password ?? "");
@@ -42,4 +42,4 @@ const UserForm = ({user, disabled, onSave}) => {
     </>
 }
 
-export default UserForm;
+export default LoginForm;
