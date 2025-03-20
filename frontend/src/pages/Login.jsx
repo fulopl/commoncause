@@ -1,22 +1,28 @@
-import SignInForm from "../components/LoginForm.jsx";
+import LoginForm from "../components/LoginForm.jsx";
 import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {useUser} from "../context/UserProvider";
+import Loading from "../components/loading/Loading.jsx";
 
 function Login() {
     const navigate = useNavigate();
     const [isDisabled, setDisabled] = useState(false);
     const {message, reSetMessage, login} = useUser();
+    const [isLoading, setLoading] = useState(false);
 
-    const handleSignIn = (userCredentials) => {
+    const handleSignIn = async (userCredentials) => {
         setDisabled(true);
-        login(userCredentials);
+        setLoading(true);
+        await login(userCredentials);
+        setLoading(false);
     }
+
+    if (isLoading) return <Loading/>;
 
     if (!message) {
         return <>
             <h2>Sign in</h2>
-            <SignInForm
+            <LoginForm
                 disabled={isDisabled}
                 onSave={handleSignIn}
             />
