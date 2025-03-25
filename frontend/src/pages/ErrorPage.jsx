@@ -7,8 +7,8 @@ function ErrorPage() {
     return (
         <div style={{padding: "20px", textAlign: "center"}}>
             <h1>Oops! Something went wrong.</h1>
-            <p>{error.statusText || error.message}</p>
-            <a href="/">Go back to Home</a>
+            <p>{error ? error.message : "An unexpected error occurred. Please try again later!"}</p>
+            <a href="/">Go back to Main Page</a>
         </div>
     );
 }

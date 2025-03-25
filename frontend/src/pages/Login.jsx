@@ -3,6 +3,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {useUser} from "../context/UserProvider";
 import Loading from "../components/loading/Loading.jsx";
+import MessageBox from "../components/MessageBox.jsx";
 
 function Login() {
     const navigate = useNavigate();
@@ -34,23 +35,22 @@ function Login() {
     }
 
     if (message === "OK") {
-        return <>
-            <h2>You have successfully signed in.</h2>
-            <button type="button" onClick={() => navigate("/")}>
-                Go to main page!
-            </button>
-        </>;
+        return <MessageBox
+            text="You have successfully signed in"
+            onOk={()=>{
+                reSetMessage();
+                navigate("/");
+            }}
+        />
     }
 
-    return <>
-        <h2>{message}</h2>
-        <button type="button" onClick={() => {
+    return <MessageBox
+        text={message}
+        onOk={() => {
             reSetMessage();
             setDisabled(false);
-        }}>
-            OK
-        </button>
-    </>
+        }}
+    />
 }
 
 export default Login;
