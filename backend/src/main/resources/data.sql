@@ -31,10 +31,10 @@ VALUES (1, 1, '5.b osztály'),
        (2, 1, '7.b osztály'),
        (3, 1, 'Társasházi lakóközösség');
 
-INSERT INTO user_group_members (members_id, user_group_id)
-VALUES (2, 1),
-       (3, 1),
-       (4, 1),
-       (5, 1),
-       (6, 1);
+INSERT INTO appuser_usergroup (appuser_id, usergroup_id)
+VALUES (1, 1),
+       (1, 2),
+       (1, 3),
+       (2, 1),
+       (3, 1);
 
