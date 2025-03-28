@@ -2,6 +2,7 @@ package com.fulopl.backend.model.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
 import java.util.Set;
 
 @Entity
@@ -19,7 +20,12 @@ public class AppUser {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "appuser_usergroup",  // Name of the join table
+            joinColumns = @JoinColumn(name = "appuser_id"),  // Foreign key for Student
+            inverseJoinColumns = @JoinColumn(name = "usergroup_id") // Foreign key for Course
+    )
     private Set<UserGroup> groups;
 
     private String name;
@@ -51,6 +57,14 @@ public class AppUser {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public Collection<UserGroup> getGroups() {
+        return this.groups;
     }
 
 }
