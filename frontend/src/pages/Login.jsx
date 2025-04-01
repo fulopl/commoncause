@@ -37,7 +37,7 @@ function Login() {
     if (message === "OK") {
         return <MessageBox
             text="You have successfully signed in"
-            onOk={()=>{
+            onOk={() => {
                 reSetMessage();
                 navigate("/");
             }}
