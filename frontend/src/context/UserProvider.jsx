@@ -6,7 +6,7 @@ const setToken = (token) => window.localStorage.setItem("token", token);
 const getToken = () => window.localStorage.getItem("token");
 
 const UserProvider = ({children}) => {
-    const [user, setUser] = useState();
+    const [user, setUser] = useState(null);
     const [message, setMessage] = useState("");
     const [isLoading, setLoading] = useState(true);
 
@@ -41,10 +41,9 @@ const UserProvider = ({children}) => {
                 body: JSON.stringify(credentials),
             });
             const response = await res.json();
-            console.log(response);
             if (response.jwt) {
                 setToken(response.jwt);
-              //  await getMe();
+                await getMe();
                 setMessage("OK");
             } else if (response.error === "Bad credentials") setMessage("Incorrect username or password. Please try again!");
             else setMessage(`An error occurred while processing your request.\n${response.error}\nPlease try again later!`);
@@ -55,7 +54,7 @@ const UserProvider = ({children}) => {
 
     const logout = () => {
         setUser(null);
-        setToken("");
+        setToken(null);
     }
 
     const reSetMessage = () => {
